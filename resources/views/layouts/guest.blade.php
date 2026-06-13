@@ -25,12 +25,12 @@
                 <div class="absolute inset-0 bg-pink-100/20"></div>
 
                 <div class="relative z-10 -mt-16">
-                    <img
-                        src="{{ asset('img/logo-melladoces.png') }}"
-                        alt="Logo Mella Doces"
-                        class="w-[350px] mx-auto drop-shadow-lg"
-                    >
-                </div>
+    <img
+        src="{{ asset('img/logo-nova.png') }}"
+        alt="Logo Mella Doces"
+        class="w-[350px] mx-auto drop-shadow-lg"
+    >
+</div>
 
                 <div class="absolute bottom-0 left-0 right-0 h-28 bg-pink-300/45 rounded-t-[50%] flex items-center justify-center">
                     <p class="text-xl text-amber-900 font-medium">

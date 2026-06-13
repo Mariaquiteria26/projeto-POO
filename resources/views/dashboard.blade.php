@@ -4,7 +4,7 @@
        <aside class="w-[285px] min-h-screen bg-gradient-to-b from-pink-50 to-white border-r border-pink-100 px-6 pt-4 pb-7 flex flex-col">
     <div>
         <div class="text-center mb-4">
-            <img src="{{ asset('img/logo-melladoces.png') }}" class="w-44 mx-auto mb-2" alt="Mella Doces">
+            <img src="{{ asset('img/logo-nova.png') }}" class="w-44 mx-auto mb-2" alt="Mella Doces">
 
             <div class="flex items-center justify-center gap-2 text-[#e60062] text-sm font-medium">
                 <span>Confeitaria Artesanal</span>
