@@ -7,59 +7,55 @@ use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $pedidos = Pedido::all();
+        return view('pedidos.index', compact('pedidos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('pedidos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $pedido = new Pedido();
+        $pedido->cliente_nome = $request->cliente_nome;
+        $pedido->doce = $request->doce;
+        $pedido->quantidade = $request->quantidade;
+        $pedido->save();
+
+        return redirect()->route('pedidos.index')
+            ->with('success', 'Pedido cadastrado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Pedido $pedido)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Pedido $pedido)
     {
-        //
+        return view('pedidos.edit', compact('pedido'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Pedido $pedido)
     {
-        //
+        $pedido->cliente_nome = $request->cliente_nome;
+        $pedido->doce = $request->doce;
+        $pedido->quantidade = $request->quantidade;
+        $pedido->save();
+
+        return redirect()->route('pedidos.index')
+            ->with('success', 'Pedido atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Pedido $pedido)
     {
-        //
+        $pedido->delete();
+
+        return redirect()->route('pedidos.index')
+            ->with('success', 'Pedido excluído com sucesso!');
     }
 }
