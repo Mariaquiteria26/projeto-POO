@@ -1,6 +1,6 @@
 <h1>Editar Fornecedor</h1>
 
-<form action="{{ route('fornecedores.update', $fornecedore->id) }}" method="POST">
+<form action="{{ route('fornecedores.update', $fornecedor->id) }}" method="POST">
     @csrf
     @method('PUT')
 

@@ -11,104 +11,40 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700|playfair-display:700,800&display=swap" rel="stylesheet" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <style>
-        body {
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #fff1f8, #ffffff, #fbcfe8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Figtree, sans-serif;
-        }
-
-        .login-card {
-            width: 82%;
-            max-width: 1400px;
-            height: 800px;
-            background: white;
-            border-radius: 36px;
-            overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.18);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .login-left {
-            position: relative;
-            overflow: hidden;
-            background: #ffe4ef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .login-bg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.75;
-        }
-
-        .login-logo {
-            position: relative;
-            z-index: 2;
-            width: 300px;
-            margin-top: -110px;
-            filter: drop-shadow(0 12px 12px rgba(0,0,0,0.15));
-        }
-
-        .login-curve {
-            position: absolute;
-            left: 50%;
-            bottom: -90px;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 260px;
-            background: rgba(244, 114, 182, 0.35);
-            border-radius: 50% 50% 0 0;
-        }
-
-        .login-phrase {
-            position: absolute;
-            bottom: 55px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: #78350f;
-            font-size: 24px;
-            z-index: 3;
-        }
-
-        .login-right {
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 56px;
-        }
-    </style>
 </head>
 
-<body>
-    <div class="login-card">
-        <div class="login-left">
-            <img src="{{ asset('img/pattern-mella.png') }}" class="login-bg" alt="">
-            <img src="{{ asset('img/logo-nova.png') }}" class="login-logo" alt="Logo Mella Doces">
+<body class="font-sans text-gray-900 antialiased">
+    <main class="min-h-screen bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 flex items-center justify-center px-6 py-4 overflow-hidden">
 
-            <div class="login-curve"></div>
+        <section class="w-full max-w-6xl min-h-[620px] max-h-[90vh] bg-white rounded-[28px] shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
 
-            <p class="login-phrase">
-                O doce que "Mella" sua boca.
-            </p>
-        </div>
+            <div
+                class="hidden lg:flex flex-col items-center justify-center text-center relative overflow-hidden bg-pink-100"
+                style="background-image: url('/img/pattern-mella.png'); background-size: cover; background-position: center;"
+            >
+                <div class="absolute inset-0 bg-pink-100/20"></div>
 
-        <div class="login-right">
-            {{ $slot }}
-        </div>
-    </div>
+                <div class="relative z-10 -mt-16">
+    <img
+        src="{{ asset('img/logo-nova.png') }}"
+        alt="Logo Mella Doces"
+        class="w-[350px] mx-auto drop-shadow-lg"
+    >
+</div>
+
+                <div class="absolute bottom-0 left-0 right-0 h-28 bg-pink-300/45 rounded-t-[50%] flex items-center justify-center">
+                    <p class="text-xl text-amber-900 font-medium">
+                        Transformando momentos em memórias doces.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-center bg-white px-12 py-10">
+                {{ $slot }}
+            </div>
+
+        </section>
+
+    </main>
 </body>
 </html>

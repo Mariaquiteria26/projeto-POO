@@ -1,7 +1,8 @@
 <x-app-layout>
     <div class="min-h-screen bg-[#fff7fb] flex text-[#20202a]">
 
-       <aside class="w-[285px] min-h-screen bg-gradient-to-b from-pink-50 to-white border-r border-pink-100 px-6 pt-4 pb-7 flex flex-col">
+       <aside class="w-[285px] min-h-screen bg-gradient-to-b from-pink-50 to-white border-r border-pink-100 px-6 pt-4 pb-7 flex flex-col justify-between" style="height: 100vh;">
+        
     <div>
         <div class="text-center mb-4">
             <img src="{{ asset('img/logo-nova.png') }}" class="w-44 mx-auto mb-2" alt="Mella Doces">
@@ -22,7 +23,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="#" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('doces.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <path d="M8 12h8l-.8 8H8.8L8 12z" />
                     <path d="M7.5 12c-.4-2.2 1.4-4 3.3-3.5.4-1.8 2.8-1.8 3.2 0 1.9-.5 3.7 1.3 3.3 3.5" />
@@ -32,7 +33,7 @@
                 <span>Doces</span>
             </a>
 
-            <a href="#" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('pedidos.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <path d="M6 8h12l1 12H5L6 8z" />
                     <path d="M9 8V6a3 3 0 0 1 6 0v2" />
@@ -41,7 +42,7 @@
                 <span>Pedidos</span>
             </a>
 
-            <a href="#" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('fornecedores.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <path d="M3 7h11v10H3z" />
                     <path d="M14 10h4l3 3v4h-7z" />
@@ -51,7 +52,7 @@
                 <span>Fornecedores</span>
             </a>
 
-            <a href="#" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('usuarios.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <circle cx="9" cy="8" r="3" />
                     <circle cx="17" cy="9" r="2.5" />
@@ -63,8 +64,8 @@
         </nav>
     </div>
 
-    <form method="POST" action="{{ route('logout') }}" class="mt-auto">
-        @csrf
+    <div class="border-t border-pink-100 my-4"></div>
+    <form method="POST" action="{{ route('logout') }} "class="pt-10">
         <button type="submit" class="w-full flex items-center gap-4 px-5 py-4 rounded-xl bg-pink-50 hover:bg-pink-100 transition font-semibold">
             <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -97,7 +98,7 @@
                             </svg>
 
                             <span class="absolute -top-1 -right-1 bg-[#e60062] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                                3
+                                
                             </span>
                         </button>
 
@@ -148,11 +149,30 @@
 
                 @php
                 $cards = [
-                ['titulo' => 'Doces', 'valor' => 0, 'texto' => 'cadastrados', 'icone' => 'doce'],
-                ['titulo' => 'Pedidos', 'valor' => 0, 'texto' => 'este mês', 'icone' => 'pedido'],
-                ['titulo' => 'Fornecedores', 'valor' => 0, 'texto' => 'cadastrados', 'icone' => 'fornecedor'],
-                ['titulo' => 'Usuários', 'valor' => \App\Models\User::count(), 'texto' => 'ativos', 'icone' => 'usuario'],
+                    ['titulo' => 'Doces', 'valor' => \App\Models\Doce::count(), 'texto' => 'cadastrados', 'icone' => 'doce', 'rota' => route('doces.index')],
+                    ['titulo' => 'Pedidos', 'valor' => \App\Models\Pedido::count(), 'texto' => 'cadastrados', 'icone' => 'pedido', 'rota' => route('pedidos.index')],
+                    ['titulo' => 'Fornecedores', 'valor' => \App\Models\Fornecedor::count(), 'texto' => 'cadastrados', 'icone' => 'fornecedor', 'rota' => route('fornecedores.index')],
+                    ['titulo' => 'Usuários', 'valor' => \App\Models\User::count(), 'texto' => 'ativos', 'icone' => 'usuario', 'rota' => route('usuarios.index')],
                 ];
+                $atividades = collect()
+                    ->merge(\App\Models\Doce::orderByDesc('id')->take(5)->get()->map(fn($item) => [
+                        'mensagem' => 'Doce cadastrado: ' . $item->nome,
+                        'data' => $item->created_at,
+                    ]))
+                    ->merge(\App\Models\Pedido::orderByDesc('id')->take(5)->get()->map(fn($item) => [
+                        'mensagem' => 'Pedido cadastrado para: ' . $item->cliente_nome,
+                        'data' => $item->created_at,
+                    ]))
+                    ->merge(\App\Models\Fornecedor::orderByDesc('id')->take(5)->get()->map(fn($item) => [
+                        'mensagem' => 'Fornecedor cadastrado: ' . $item->nome,
+                        'data' => $item->created_at,
+                    ]))
+                    ->merge(\App\Models\User::orderByDesc('id')->take(5)->get()->map(fn($item) => [
+                        'mensagem' => 'Usuário cadastrado: ' . $item->name,
+                        'data' => $item->created_at,
+                    ]))
+                    ->sortByDesc('data')
+                    ->take(5);
                 @endphp
 
                 <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
@@ -197,7 +217,7 @@
                             </div>
                         </div>
 
-                        <a href="#" class="block text-center bg-pink-50 text-[#e60062] font-semibold py-3 rounded-xl hover:bg-pink-100 transition">
+                        <a href="{{ $card['rota'] }}" class="block text-center bg-pink-50 text-[#e60062] font-semibold py-3 rounded-xl hover:bg-pink-100 transition">
                             Ver detalhes →
                         </a>
                     </div>
@@ -218,20 +238,58 @@
                         </h3>
                     </div>
 
-                    <div class="border-t border-dashed border-pink-300 pt-8 flex flex-col md:flex-row items-center justify-center gap-12">
-                        <img src="{{ asset('img/atividades-dashboard.png') }}" class="w-64" alt="Atividades recentes">
+                    <div class="border-t border-dashed border-pink-300 pt-6">
 
-                        <div>
-                            <h4 class="text-2xl font-bold text-[#e60062] mb-3">
-                                Nenhuma atividade registrada ainda.
-                            </h4>
+    @if($atividades->count() > 0)
 
-                            <p class="text-gray-600 text-lg leading-relaxed">
-                                Comece cadastrando seus doces para<br>
-                                acompanhar as movimentações do sistema.
-                            </p>
-                        </div>
+        <div class="space-y-4">
+
+            @foreach($atividades as $atividade)
+
+                <div class="flex justify-between items-center bg-pink-50 rounded-xl px-5 py-4 border border-pink-100">
+
+                    <div class="flex items-center gap-3">
+
+                        <div class="w-3 h-3 rounded-full bg-pink-500"></div>
+
+                        <span class="text-gray-700 font-medium">
+                            {{ $atividade['mensagem'] }}
+                        </span>
+
                     </div>
+
+                    <span class="text-sm text-gray-500">
+                        {{ $atividade['data']->format('d/m/Y H:i') }}
+                    </span>
+
+                </div>
+
+            @endforeach
+
+        </div>
+
+    @else
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+
+            <img src="{{ asset('img/atividades-dashboard.png') }}" class="w-64" alt="Atividades recentes">
+
+            <div>
+                <h4 class="text-2xl font-bold text-[#e60062] mb-3">
+                    Nenhuma atividade registrada ainda.
+                </h4>
+
+                <p class="text-gray-600 text-lg leading-relaxed">
+                    Comece cadastrando seus doces para<br>
+                    acompanhar as movimentações do sistema.
+                </p>
+            </div>
+
+        </div>
+
+    @endif
+
+</div>
                 </section>
 
             </div>

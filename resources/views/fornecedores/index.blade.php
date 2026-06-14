@@ -6,7 +6,7 @@
 
 <h1>Lista de Fornecedores</h1>
 
-<a href="{{ route('fornecedores.edit', ['fornecedore' => $fornecedor->id]) }}">
+<a href="{{ route('fornecedores.create') }}">
     Novo Fornecedor
 </a>
 
@@ -31,7 +31,7 @@
                 Editar
             </a>
 
-            <form action="{{ route('fornecedores.destroy', ['fornecedore' => $fornecedor->id]) }}" method="POST">
+            <form action="{{ route('fornecedores.destroy', $fornecedor->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
 

@@ -18,7 +18,8 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
 
     Route::resource('doces', DoceController::class);
-    Route::resource('fornecedores', FornecedorController::class);
+    Route::resource('fornecedores', FornecedorController::class)
+    ->parameters(['fornecedores' => 'fornecedor']);
     Route::resource('pedidos', PedidoController::class);
     Route::resource('usuarios', UsuarioController::class);
 
