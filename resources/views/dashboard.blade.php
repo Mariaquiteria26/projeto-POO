@@ -65,7 +65,8 @@
     </div>
 
     <div class="border-t border-pink-100 my-4"></div>
-    <form method="POST" action="{{ route('logout') }} "class="pt-10">
+    <form method="POST" action="{{ route('logout') }}"class="pt-10">
+        @csrf
         <button type="submit" class="w-full flex items-center gap-4 px-5 py-4 rounded-xl bg-pink-50 hover:bg-pink-100 transition font-semibold">
             <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />

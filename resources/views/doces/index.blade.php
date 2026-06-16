@@ -16,22 +16,35 @@
         </div>
 
         <nav class="space-y-2">
-            <a href="{{ route('dashboard') }}" class="flex items-center gap-4 bg-[#e60062] text-white px-5 py-4 rounded-xl font-semibold shadow-lg shadow-pink-200">
-                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 3 3 10.5V21h6v-6h6v6h6V10.5L12 3z" />
-                </svg>
-                <span>Dashboard</span>
-            </a>
 
-            <a href="{{ route('doces.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
-                <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
-                    <path d="M8 12h8l-.8 8H8.8L8 12z" />
-                    <path d="M7.5 12c-.4-2.2 1.4-4 3.3-3.5.4-1.8 2.8-1.8 3.2 0 1.9-.5 3.7 1.3 3.3 3.5" />
-                    <path d="M10 16h.01M12 16h.01M14 16h.01" />
-                    <path d="M12 6V4" />
-                </svg>
-                <span>Doces</span>
-            </a>
+    <a href="{{ route('dashboard') }}"
+       class="flex items-center gap-4 px-5 py-4 rounded-xl font-semibold transition
+       {{ request()->routeIs('dashboard')
+            ? 'bg-[#e60062] text-white shadow-lg shadow-pink-200'
+            : 'hover:bg-pink-100 text-black' }}">
+        <svg class="w-7 h-7 {{ request()->routeIs('dashboard') ? 'text-white' : 'text-[#e60062]' }}"
+     fill="currentColor"
+     viewBox="0 0 24 24">
+            <path d="M12 3 3 10.5V21h6v-6h6v6h6V10.5L12 3z" />
+        </svg>
+        <span>Dashboard</span>
+    </a>
+
+    <a href="{{ route('doces.index') }}"
+       class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold transition
+       {{ request()->routeIs('doces.*')
+            ? 'bg-[#e60062] text-white shadow-lg shadow-pink-200'
+            : 'hover:bg-pink-100 text-black' }}">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <path d="M8 12h8l-.8 8H8.8L8 12z" />
+            <path d="M7.5 12c-.4-2.2 1.4-4 3.3-3.5.4-1.8 2.8-1.8 3.2 0 1.9-.5 3.7 1.3 3.3 3.5" />
+            <path d="M10 16h.01M12 16h.01M14 16h.01" />
+            <path d="M12 6V4" />
+        </svg>
+        <span>Doces</span>
+    </a>
+
+</nav>
 
             <a href="{{ route('pedidos.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
@@ -66,6 +79,7 @@
 
     <div class="border-t border-pink-100 my-4"></div>
     <form method="POST" action="{{ route('logout') }} "class="pt-10">
+        @csrf
         <button type="submit" class="w-full flex items-center gap-4 px-5 py-4 rounded-xl bg-pink-50 hover:bg-pink-100 transition font-semibold">
             <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -91,7 +105,7 @@
                     </h1>
 
                     <p class="text-gray-600 mt-2 text-lg">
-                        Gerencie os doces da sua confeitaria ♥
+                        Gerencie os doces da sua confeitaria
                     </p>
                 </div>
 
