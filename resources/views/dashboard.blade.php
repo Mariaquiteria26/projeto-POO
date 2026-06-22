@@ -1,12 +1,11 @@
 <x-app-layout>
     <div class="min-h-screen bg-[#fff7fb] flex text-[#20202a]">
 
-       <aside class="w-[285px] min-h-screen bg-gradient-to-b from-pink-50 to-white border-r border-pink-100 px-6 pt-4 pb-7 flex flex-col justify-between" style="height: 100vh;">
-        
+       <aside class="w-[285px] bg-gradient-to-b from-pink-50 to-white border-r border-pink-100 px-6 pt-4 pb-7 flex flex-col justify-between sticky top-0 h-screen" >
+
     <div>
         <div class="text-center mb-4">
             <img src="{{ asset('img/logo-nova.png') }}" class="w-44 mx-auto mb-2" alt="Mella Doces">
-
             <div class="flex items-center justify-center gap-2 text-[#e60062] text-sm font-medium">
                 <span>Confeitaria Artesanal</span>
                 <svg class="w-4 h-4 fill-[#e60062]" viewBox="0 0 24 24">
@@ -23,7 +22,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <a href="{{ route('doces.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('doces.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition text-black">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <path d="M8 12h8l-.8 8H8.8L8 12z" />
                     <path d="M7.5 12c-.4-2.2 1.4-4 3.3-3.5.4-1.8 2.8-1.8 3.2 0 1.9-.5 3.7 1.3 3.3 3.5" />
@@ -33,7 +32,7 @@
                 <span>Doces</span>
             </a>
 
-            <a href="{{ route('pedidos.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('pedidos.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition text-black">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <path d="M6 8h12l1 12H5L6 8z" />
                     <path d="M9 8V6a3 3 0 0 1 6 0v2" />
@@ -42,7 +41,7 @@
                 <span>Pedidos</span>
             </a>
 
-            <a href="{{ route('fornecedores.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('fornecedores.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition text-black">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <path d="M3 7h11v10H3z" />
                     <path d="M14 10h4l3 3v4h-7z" />
@@ -52,7 +51,7 @@
                 <span>Fornecedores</span>
             </a>
 
-            <a href="{{ route('usuarios.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition">
+            <a href="{{ route('usuarios.index') }}" class="flex items-center gap-4 px-5 py-3.5 rounded-xl font-semibold hover:bg-pink-100 transition text-black">
                 <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
                     <circle cx="9" cy="8" r="3" />
                     <circle cx="17" cy="9" r="2.5" />
@@ -64,21 +63,24 @@
         </nav>
     </div>
 
-    <div class="border-t border-pink-100 my-4"></div>
-    <form method="POST" action="{{ route('logout') }}"class="pt-10">
-        @csrf
-        <button type="submit" class="w-full flex items-center gap-4 px-5 py-4 rounded-xl bg-pink-50 hover:bg-pink-100 transition font-semibold">
-            <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
-                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                <path d="M10 17l5-5-5-5" />
-                <path d="M15 12H3" />
-            </svg>
-            <span>Sair</span>
-        </button>
-    </form>
+    <div>
+        <div class="border-t border-pink-100 my-4"></div>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="w-full flex items-center gap-4 px-5 py-4 rounded-xl bg-pink-50 hover:bg-pink-100 transition font-semibold">
+                <svg class="w-7 h-7 text-[#e60062]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                    <path d="M10 17l5-5-5-5" />
+                    <path d="M15 12H3" />
+                </svg>
+                <span>Sair</span>
+            </button>
+        </form>
+    </div>
+
 </aside>
 
-        <main class="flex-1">
+        <main class="flex-1 overflow-y-auto">
             <header class="h-[100px] bg-white border-b border-pink-100 px-9 flex items-center justify-between">
                 <div class="flex items-center gap-7">
                     <svg class="w-8 h-8 text-[#6b4652]" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
