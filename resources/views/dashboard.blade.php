@@ -132,9 +132,6 @@
                     <div>
                         <h2 class="text-4xl font-bold text-[#e60062] mb-5">
                             Bem-vindo(a) à Mella Doces!
-                            <svg class="w-8 h-8 fill-[#e60062] inline align-middle" viewBox="0 0 24 24">
-                                <path d="M12 21s-7-4.35-9.5-8.4C.6 9.5 2.3 5.5 6 5.5c2 0 3.3 1.1 4 2.2 0.7-1.1 2-2.2 4-2.2 3.7 0 5.4 4 3.5 7.1C19 16.65 12 21 12 21z" />
-                            </svg>
                         </h2>
 
                         <p class="text-gray-600 text-xl leading-relaxed">
