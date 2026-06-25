@@ -20,19 +20,20 @@ class PedidoController extends Controller
 
     public function store(Request $request)
     {
-        $pedido = new Pedido();
-        $pedido->cliente_nome = $request->cliente_nome;
-        $pedido->doce = $request->doce;
-        $pedido->quantidade = $request->quantidade;
-        $pedido->save();
+        $request->validate([
+            'cliente_nome' => 'required|string|max:255',
+            'doce' => 'required|string|max:255',
+            'quantidade' => 'required|numeric|min:1'
+        ]);
+
+        Pedido::create($request->only([
+            'cliente_nome',
+            'doce',
+            'quantidade'
+        ]));
 
         return redirect()->route('pedidos.index')
             ->with('success', 'Pedido cadastrado com sucesso!');
-    }
-
-    public function show(Pedido $pedido)
-    {
-        //
     }
 
     public function edit(Pedido $pedido)
@@ -42,10 +43,17 @@ class PedidoController extends Controller
 
     public function update(Request $request, Pedido $pedido)
     {
-        $pedido->cliente_nome = $request->cliente_nome;
-        $pedido->doce = $request->doce;
-        $pedido->quantidade = $request->quantidade;
-        $pedido->save();
+        $request->validate([
+            'cliente_nome' => 'required|string|max:255',
+            'doce' => 'required|string|max:255',
+            'quantidade' => 'required|numeric|min:1'
+        ]);
+
+        $pedido->update($request->only([
+            'cliente_nome',
+            'doce',
+            'quantidade'
+        ]));
 
         return redirect()->route('pedidos.index')
             ->with('success', 'Pedido atualizado com sucesso!');

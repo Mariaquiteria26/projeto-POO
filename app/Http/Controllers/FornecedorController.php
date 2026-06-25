@@ -20,19 +20,16 @@ class FornecedorController extends Controller
 
     public function store(Request $request)
     {
-        $fornecedor = new Fornecedor();
-        $fornecedor->nome = $request->nome;
-        $fornecedor->telefone = $request->telefone;
-        $fornecedor->email = $request->email;
-        $fornecedor->save();
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'telefone' => 'required|string|max:20',
+            'email' => 'required|email|max:255'
+        ]);
+
+        Fornecedor::create($request->only(['nome', 'telefone', 'email']));
 
         return redirect()->route('fornecedores.index')
             ->with('success', 'Fornecedor cadastrado com sucesso!');
-    }
-
-    public function show(Fornecedor $fornecedor)
-    {
-        //
     }
 
     public function edit(Fornecedor $fornecedor)
@@ -42,10 +39,13 @@ class FornecedorController extends Controller
 
     public function update(Request $request, Fornecedor $fornecedor)
     {
-        $fornecedor->nome = $request->nome;
-        $fornecedor->telefone = $request->telefone;
-        $fornecedor->email = $request->email;
-        $fornecedor->save();
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'telefone' => 'required|string|max:20',
+            'email' => 'required|email|max:255'
+        ]);
+
+        $fornecedor->update($request->only(['nome', 'telefone', 'email']));
 
         return redirect()->route('fornecedores.index')
             ->with('success', 'Fornecedor atualizado com sucesso!');

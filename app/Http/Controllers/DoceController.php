@@ -20,13 +20,16 @@ class DoceController extends Controller
 
     public function store(Request $request)
     {
-        $doce = new Doce();
-        $doce->nome = $request->nome;
-        $doce->descricao = $request->descricao;
-        $doce->preco = $request->preco;
-        $doce->save();
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'descricao' => 'required|string',
+        'preco' => 'required|numeric|min:0'
+    ]);
 
-        return redirect()->route('doces.index')->with('success', 'Doce cadastrado com sucesso!');
+    Doce::create($request->only(['nome', 'descricao', 'preco']));
+
+    return redirect()->route('doces.index')
+        ->with('success', 'Doce cadastrado com sucesso!');
     }
 
     public function edit(Doce $doce)
@@ -34,14 +37,18 @@ class DoceController extends Controller
         return view('doces.edit', compact('doce'));
     }
 
-    public function update(Request $request, Doce $doce)
+   public function update(Request $request, Doce $doce)
     {
-        $doce->nome = $request->nome;
-        $doce->descricao = $request->descricao;
-        $doce->preco = $request->preco;
-        $doce->save();
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'descricao' => 'required|string',
+        'preco' => 'required|numeric|min:0'
+    ]);
 
-        return redirect()->route('doces.index')->with('success', 'Doce atualizado com sucesso!');
+    $doce->update($request->only(['nome', 'descricao', 'preco']));
+
+    return redirect()->route('doces.index')
+        ->with('success', 'Doce atualizado com sucesso!');
     }
 
     public function destroy(Doce $doce)
